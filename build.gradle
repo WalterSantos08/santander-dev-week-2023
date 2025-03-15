@@ -1,0 +1,36 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.0' // Spring Boot 3.2+ (Java 21)
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'me.dio'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web' // Spring Web
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA (se usar banco)
+
+	// SpringDoc (Swagger/OpenAPI)
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+
+	// Banco de dados (H2 e PostgreSQL - ajuste conforme necessário)
+	runtimeOnly 'com.h2database:h2:2.2.224'
+	runtimeOnly 'org.postgresql:postgresql:42.7.1'
+
+	// Testes
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
